@@ -10,6 +10,12 @@ download all the attachments from a zendesk ticket to
 
 ## use
 
+Specify the API key for `connect.posit.it` as an environment variable:
+```shell
+export ZD_CLI_CONNECT_API_KEY=your_key_here
+```
+
+
 ```shell
 ❯ zd download --help                         
 
@@ -22,9 +28,10 @@ download all the attachments from a zendesk ticket to
 
   Options:
 
-    -h, --help  - Show this help.  
+    -h, --help  - Show this help. 
+    -d, --dir   - specify download directory 
 
   Environment variables:
 
-    CONNECT_API_KEY  <value>  - connect api key for connect.posit.it
+    ZD_CLI_CONNECT_API_KEY  <value>  - connect api key for connect.posit.it
 ```
