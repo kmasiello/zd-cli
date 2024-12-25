@@ -42,7 +42,7 @@ async function fetchTicket(
 
 async function downloadAttachments(tick: number, urls: string[], downloadPath?: string) {
   const downloadDir = downloadPath || dir("download");
-  const destDir = `${downloadDir}/support/${tick}`;
+  const destDir = `${downloadDir}/${tick}`;
   await ensureDir(destDir);
   urls.map(async (url) => {
     const urlParams = (new URL(url)).searchParams;
@@ -58,13 +58,16 @@ async function downloadAttachments(tick: number, urls: string[], downloadPath?: 
 
 await new Command()
   .name("zd")
-  .version("0.3.1.km")
+  .version("km.2024.12.2")
   .description("zendesk helpers")
+  .option(
+    "-d, --dir <path:string>",
+    "specify custom download directory (default: ~/Downloads/<ticketId>)",
+  )
   .command(
     "download <ticketId:integer>",
     "download all attachments for a zendesk ticket",
   )
-  .option("-d, --dir <path:string>", "specify download directory")
   .action((options, ticketId) => {
     fetchTicket(ticketId, options).then((urls) => {
       downloadAttachments(ticketId, urls, options.dir);
